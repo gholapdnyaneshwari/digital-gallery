@@ -6,9 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
 </head>
+<style>
+    .main-image {
+        height: 200px;
+        border-radius: 10px;
+
+    }
+
+    .gallery-container {
+        width: fit-content;
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .btn-slide {
+        display: flex;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+    }
+</style>
 
 <body>
-    <img src="nature1.jpeg" alt="nature1">
+    <div class="gallery-container">
+        <img src="left-arrow.png" alt="left-arrow" class="btn-slide btn-left" onclick="slideLeft()">
+        <img src="nature1.jpeg" alt="nature1" class="main-image" id="mainImage">
+        <img src="arrow-right.png" alt="right-arrow" class=" btn-slide btn-right" onclick="slideRight()">
+    </div>
     <script>
         const IMAGES = [
             "nature1.jpeg",
@@ -19,7 +47,30 @@
             "nature6.jpeg",
             "nature7.jpeg",
             "nature8.jpeg",
-        ]
+        ];
+        let currentIndex = 0;
+        function showCurrentIndexImage() {
+            const imgElement = document.getElementById("mainImage");
+
+            imgElement.src = IMAGES[currentIndex];
+        }
+        function slideLeft() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = IMAGES.length - 1;
+            }
+
+            showCurrentIndexImage();
+        }
+        function slideRight() {
+            if (currentIndex < IMAGES.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            showCurrentIndexImage();
+        }
     </script>
 </body>
 
